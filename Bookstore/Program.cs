@@ -8,7 +8,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddDbContext<BookstoreContext>(
     dbContextOptions => dbContextOptions.UseMySql(
         MySQLConnection.ConnectionString,
-        new MySqlServerVersion(new Version(8, 0, 27))
+        new MySqlServerVersion(new Version(8, 4, 3))
     )
 );
 
