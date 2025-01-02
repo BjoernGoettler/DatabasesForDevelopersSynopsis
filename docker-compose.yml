@@ -4,3 +4,5 @@ services:
     env_file:
       - database.env
       - shared.env
+    ports:
+      - "3306:3306"
