@@ -11,6 +11,9 @@ builder.Services.AddDbContext<BookstoreContext>(
         new MySqlServerVersion(new Version(8, 0, 27))
     )
 );
+
+builder.Services.AddControllers();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -27,4 +30,5 @@ if (app.Environment.IsDevelopment())
     
 }
 
+app.MapControllers();
 app.Run();
