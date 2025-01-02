@@ -31,4 +31,23 @@ public class BookstoreController: ControllerBase
     public async Task<ActionResult<CustomerModel>> CreateCustomer(string name)
         => await _service.CreateCustomer(name);
     
+    [HttpGet]
+    [Route("/books")]
+    public async Task<ActionResult<List<BookModel>>> GetAllBooks()
+        => await _service.GetAllBooks();
+    
+    [HttpGet]
+    [Route("/books/{id}")]
+    public async Task<ActionResult<BookModel>> GetBookById(Guid id)
+        => await _service.GetBookById(id);
+    
+    [HttpPost]
+    [Route("/books")]
+    public async Task<ActionResult<BookModel>> CreateBook(string title, decimal price)
+        => await _service.CreateBook(title, price);
+    
+    [HttpDelete]
+    [Route("/books/{id}")]
+    public async Task<ActionResult<BookModel>> ArchiveBook(Guid id)
+        => await _service.ArchiveBook(id);
 }

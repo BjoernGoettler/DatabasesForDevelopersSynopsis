@@ -21,5 +21,17 @@ public class BookstoreService
     
     public async Task<CustomerModel> CreateCustomer(string name)
         => await _repository.CreateCustomer(name);
+    
+    public async Task<List<BookModel>> GetAllBooks()
+        => await _repository.GetAllBooks();
+    
+    public async Task<BookModel> GetBookById(Guid id)
+        => await _repository.GetBookById(id);
+    
+    public async Task<BookModel> CreateBook(string title, decimal price)
+        => await _repository.CreateBook(title, price);
+    
+    public async Task<BookModel> ArchiveBook(Guid id)
+        => await _repository.ArchiveBook(id);
 
 }
