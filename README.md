@@ -1,1 +1,1 @@
-# DatabasesForDevelopersSynopsis
+# Databases For Developers Synopsis
