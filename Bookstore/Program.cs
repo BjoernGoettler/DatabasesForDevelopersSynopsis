@@ -18,6 +18,13 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
     app.UseSwaggerUI(options => options.SwaggerEndpoint("/openapi/v1.json", "Bookstore API"));
+
+    using (var scope = app.Services.CreateScope())
+    {
+        var db = scope.ServiceProvider.GetRequiredService<BookstoreContext>();
+        db.Database.Migrate();
+    }
+    
 }
 
 app.Run();
