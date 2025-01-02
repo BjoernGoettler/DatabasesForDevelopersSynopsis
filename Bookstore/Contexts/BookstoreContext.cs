@@ -10,5 +10,6 @@ public class BookstoreContext: DbContext
     }
     
     public DbSet<CustomerModel> Customers { get; set; }
+    public DbSet<BookModel> Books { get; set; }
     
 }
