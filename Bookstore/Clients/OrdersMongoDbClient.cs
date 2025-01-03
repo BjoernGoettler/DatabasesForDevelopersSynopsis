@@ -2,13 +2,13 @@ using MongoDB.Driver;
 
 namespace Bookstore.Clients;
 
-public class MongoDbClient
+public class OrdersMongoDbClient
 {
     
     private readonly string _connectionString;
     private IMongoClient _client;
 
-    public MongoDbClient(string connectionString)
+    public OrdersMongoDbClient(string connectionString)
     {
         _connectionString = connectionString;
         Connect();
