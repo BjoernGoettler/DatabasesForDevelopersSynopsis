@@ -70,4 +70,10 @@ public class BookstoreRepository
         return book;
     }
 
+    public void DeleteCustomer(Guid CustomerId)
+    {
+        var customer = _context.Customers.Find(CustomerId);
+        _context.Customers.Remove(customer);
+    }
+
 }

@@ -40,4 +40,9 @@ public class OrderRepository
         
         return order;
     }
+
+    public void DeleteCustomersOrders(string customerName)
+    {
+        _collection.DeleteManyAsync(order => order.CustomerName == customerName);
+    }
 }

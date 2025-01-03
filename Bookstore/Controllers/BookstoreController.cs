@@ -73,4 +73,13 @@ public class BookstoreController: ControllerBase
     [Route("/orders/{id}/books")]
     public async Task<ActionResult<OrderCreateReturnModel>> AppendBookToOrder(string id, [FromBody] BookModelDto book)
         => await _orderService.AppendBookToOrder(ObjectId.Parse(id), book);
+
+    [HttpDelete]
+    [Route("/gdpr/customers/{customerId}")]
+    public async  Task<ActionResult> DeleteCustomersOrders(string customerId)
+    {
+        var customer = await _bookstoreService.GetCustomerById(Guid.Parse(customerId));
+        _orderService.DeleteCustomersOrders(customer.Name);
+        return Ok();
+    }
 }

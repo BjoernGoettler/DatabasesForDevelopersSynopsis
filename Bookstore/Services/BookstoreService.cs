@@ -22,6 +22,9 @@ public class BookstoreService
     public async Task<CustomerModel> CreateCustomer(string name)
         => await _repository.CreateCustomer(name);
     
+    public void DeleteCustomer(Guid id)
+        => _repository.DeleteCustomer(id);
+    
     public async Task<List<BookModel>> GetAllBooks()
         => await _repository.GetAllBooks();
     

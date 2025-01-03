@@ -55,4 +55,6 @@ public class OrderService
             Books = order.Books
         };
     }
+    public void DeleteCustomersOrders(string customerName)
+        => _repository.DeleteCustomersOrders(customerName);
 }
