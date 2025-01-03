@@ -1,4 +1,3 @@
-using DotNetEnv;
 namespace Bookstore.Connections;
 
 public static class MySQLConnection
