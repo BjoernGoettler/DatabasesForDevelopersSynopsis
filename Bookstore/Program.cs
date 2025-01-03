@@ -1,17 +1,26 @@
+using Bookstore.Clients;
 using Bookstore.Connections;
 using Bookstore.Contexts;
+using Bookstore.Models;
 using Microsoft.EntityFrameworkCore;
+using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Logging.AddConsole();
+builder.Logging.SetMinimumLevel(LogLevel.Trace);
+
 builder.Services.AddOpenApi();
+
 builder.Services.AddDbContext<BookstoreContext>(
     dbContextOptions => dbContextOptions.UseMySql(
         MySQLConnection.ConnectionString,
         new MySqlServerVersion(new Version(8, 4, 3))
     )
 );
+var mongoClient = new OrdersMongoDbClient(MongoDbConnection.ConnectionString);
 
+builder.Services.AddSingleton<IMongoCollection<OrderModel>>(mongoClient.GetCollection<OrderModel>("bookstore", "orders"));
 builder.Services.AddControllers();
 
 var app = builder.Build();
