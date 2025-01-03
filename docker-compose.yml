@@ -6,3 +6,17 @@ services:
       - shared.env
     ports:
       - "3306:3306"
+    volumes:
+      - mysqldata:/var/lib/mysql
+  mongodb:
+    image: mongodb/mongodb-community-server
+    ports:
+      - "8081:8081"
+      - "27017:27017"
+    env_file:
+      - mongodb.env
+    volumes:
+      - mongodata:/da
+volumes:
+  mysqldata:
+  mongodata:
