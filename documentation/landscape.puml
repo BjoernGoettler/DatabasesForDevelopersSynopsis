@@ -1,0 +1,49 @@
+@startuml Landscape
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+
+!$COLOR_A_5 = "#7f3b08"
+!$COLOR_A_4 = "#b35806"
+!$COLOR_A_3 = "#e08214"
+!$COLOR_A_2 = "#fdb863"
+!$COLOR_A_1 = "#fee0b6"
+!$COLOR_NEUTRAL = "#f7f7f7"
+!$COLOR_B_1 = "#d8d aeb"
+!$COLOR_B_2 = "#b2abd2"
+!$COLOR_B_3 = "#8073ac"
+!$COLOR_B_4 = "#542788"
+!$COLOR_B_5 = "#2d004b"
+!$COLOR_REL_LINE = "#8073ac"
+!$COLOR_REL_TEXT = "#8073ac"
+
+
+!$ICONURL = "https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/v3.0.0/icons"
+!include $ICONURL/common.puml
+!include $ICONURL/devicons/dotnet.puml
+!include $ICONURL/devicons/mongodb.puml
+!include $ICONURL/devicons/mysql.puml
+!include $ICONURL/devicons2/csharp.puml
+
+title Solution Overview
+
+Person(user, "User")
+
+Container_Boundary(container, "Hybrid Database"){
+    Component(bookstorecontroller, "Bookstore Controller", $techn="dotnet", $sprite=csharp)
+    Component(orderservice, "Order Service", $techn="dotnet", $sprite=csharp)
+    Component(bookstoreservice, "Bookstore Service", $techn="dotnet", $sprite=csharp)
+    Component(orderrepository, "Order Repository", $techn="dotnet", $sprite=csharp)
+    Component(bookstorerepository, "Bookstore Repository", $techn="dotnet", $sprite=csharp)
+    ComponentDb(bookstoredatabase, "Bookstore Database", $techn="MySql", $sprite=mysql)
+    ComponentDb(orderdatabase, "Orders Database", $techn="MongoDb", $sprite=mongodb)
+}
+
+Rel_D(user, bookstorecontroller, "Interacts", "HTTP")
+Rel_L(bookstorecontroller, bookstoreservice, "Handles Books")
+Rel_R(bookstorecontroller, orderservice, "Handles Orders")
+Rel_D(bookstoreservice, bookstorerepository, "CRUD operations", "C#")
+Rel_D(orderservice, orderrepository, "CRUD operations", "C#")
+Rel_D(bookstorerepository, bookstoredatabase, "Queries", "EntityFramework")
+Rel_D(orderrepository, orderdatabase, "Queries", "Wire Protocol")
+
+@enduml
